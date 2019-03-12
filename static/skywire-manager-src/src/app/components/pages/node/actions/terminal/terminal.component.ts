@@ -32,7 +32,7 @@ export class TerminalComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     forkJoin(
-      this.nodeService.getManagerPort(),
+      // this.nodeService.getManagerPort(),
       this.authService.authToken(),
     ).subscribe(res => {
       this.ws = new WebSocket(this.buildUrl(res[0], res[1]));

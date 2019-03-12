@@ -64,12 +64,14 @@
 
   "nodes": {
     "refresh": "Refresh",
-    "label": "Label",
+    "settings": "Settings",
+    "logout": "Logout",
+    "ip": "IP",
     "running": "Running",
     "edit-label": "Edit label",
     "view-node": "View node",
     "delete-node": "Delete node",
-    "error-load": "An error occurred while refreshing nodes",
+    "error-load": "An error occurred while refreshing nodes: {{error}}",
     "empty": "There aren't any nodes connected to this manager."
   },
 
@@ -86,9 +88,7 @@
         "default-password": "Don't use the default password (1234)"
       }
     },
-    "seconds": "seconds",
     "change-password": "Change password",
-    "refresh-rate": "Refresh rate",
     "language": "Language"
   },
 
@@ -100,9 +100,11 @@
 
   "actions": {
     "menu": {
+      "apps": "Applications",
+      "routing": "Routing",
       "nodes": "Nodes",
       "terminal": "Terminal",
-      "config": "Discovery",
+      "config": "Configuration",
       "update": "Check update",
       "reboot": "Reboot"
     },
@@ -187,8 +189,19 @@
   },
 
   "transports": {
-    "from": "From node/app",
-    "to": "To node/app"
+    "remote": "Remote node",
+    "type": "Type",
+    "create": "Create transport",
+    "delete": "Delete transport",
+    "dialog": {
+      "success": "Transport created",
+      "error": "Unable to create transport: {{error}}"
+    }
+  },
+
+  "routes": {
+    "key": "Key",
+    "rule": "Rule"
   },
 
   "copy": {

@@ -58,3 +58,7 @@ span
   @extend .font-size-mini;
   @extend .font-weight-light;
 }
+
+.uppercase {
+  text-transform: uppercase;
+}
