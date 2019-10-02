@@ -14,28 +14,35 @@ export class ApiService {
   ) { }
 
   get(url: string, options: any = {}): Observable<any> {
-    return this.request(this.http.get(url, {
-      ...this.getRequestOptions(options),
-      responseType: options.responseType ? options.responseType : 'json',
-    }));
+    return this.request('GET', url, {}, options);
   }
 
   post(url: string, body: any = {}, options: any = {}): Observable<any> {
-    return this.request(this.http.post(
-      url,
-      this.getPostBody(body),
-      {
-        ...this.getRequestOptions(options),
-        responseType: options.responseType ? options.responseType : 'json',
-      },
-    ));
+    return this.request('POST', url, body, options);
   }
 
-  private request(request) {
-    return request.pipe(
-      map(result => this.successHandler(result)),
-      catchError(error => this.errorHandler(error)),
-    );
+  delete(url: string, options: any = {}): Observable<any> {
+    return this.request('DELETE', url, {}, options);
+  }
+
+  private request(method: string, url: string, body: any, options: any) {
+    return this.http.request(method, this.getUrl(url, options), {
+      ...this.getRequestOptions(options),
+      responseType: options.responseType ? options.responseType : 'json',
+      body: this.getPostBody(body),
+    })
+      .pipe(
+        map(result => this.successHandler(result)),
+        catchError(error => this.errorHandler(error)),
+      );
+  }
+
+  private getUrl(url: string, options: any) {
+    if (options.api2) {
+      return `api/${url}`;
+    }
+
+    return url;
   }
 
   private getRequestOptions(options: any) {

@@ -1,0 +1,24 @@
+<app-dialog [headline]="'transports.create' | translate">
+  <div [formGroup]="form">
+    <mat-form-field>
+      <input matInput >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of types" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <app-button
+    #button
+    (action)="create()"
+    type="mat-raised-button"
+    [disabled]="!form.valid"
+    color="primary"
+    class="float-right"
+  >
+    {{ 'transports.create' | translate }}
+  </app-button>
+
+</app-dialog>

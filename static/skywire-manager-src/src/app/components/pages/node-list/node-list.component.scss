@@ -1,6 +1,7 @@
 @import "variables";
 @import "utilities/theme";
 @import "~bootstrap/scss/functions";
+@import "bootstrap_overrides";
 
 .mat-app-background {
   padding: 0;
@@ -71,4 +72,37 @@
 
 .none {
   color: lighten(theme-color(light-gray), 20%);
+}
+
+nav {
+  width: 285px;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background: $nav-bg;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.node-detail {
+  width: calc(100vw - 300px);
+  margin-left: 300px;
+
+  @media (max-width: map-get($grid-breakpoints, md)) {
+    width: 100%;
+    margin-left: 0;
+  }
 }

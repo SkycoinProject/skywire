@@ -1,9 +1,9 @@
-import {Node, NodeInfo} from '../app.datatypes';
+import { Node } from '../app.datatypes';
 
 /**
  * Node is "discovered" when every one of its discovery servers can see it
  */
-function isDiscovered(nodeInfo: NodeInfo): boolean {
+function isDiscovered(nodeInfo): boolean {
   const discoveries = Object.keys(nodeInfo.discoveries);
 
   if (discoveries.length === 0) {
@@ -51,15 +51,15 @@ function getNodeLabel(node: Node): string {
   return nodeLabel;
 }
 
-function getNodeIp(node: Node): string {
+function getNodeIp(node): string {
   return node.addr.split(':')[0];
 }
 
-function getNodeNumber(node: Node): number {
+function getNodeNumber(node): number {
   return parseInt(getNodeIp(node).split('.')[3], 10);
 }
 
-function isManager(node: Node) {
+function isManager(node) {
   return getNodeNumber(node) === MANAGER_CODE;
 }
 

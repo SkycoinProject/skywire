@@ -1,27 +1,20 @@
-import { Component, Input } from '@angular/core';
-import {Node, NodeApp, NodeFeedback, NodeInfo} from '../../../../app.datatypes';
+import { Component, OnInit } from '@angular/core';
+import { Application } from '../../../../app.datatypes';
+import { NodeService } from '../../../../services/node.service';
 
 @Component({
   selector: 'app-apps',
   templateUrl: './apps.component.html',
-  styleUrls: ['./apps.component.scss']
+  styleUrls: ['./apps.component.css']
 })
-export class AppsComponent {
-  @Input() node: Node;
-  @Input() apps: NodeApp[] = [];
-  @Input() nodeInfo: NodeInfo;
+export class AppsComponent implements OnInit {
+  apps: Application[];
 
-  getApp(name: string) {
-    return (this.apps || []).find(app => app.attributes.some(attr => attr === name));
-  }
+  constructor(
+    private nodeService: NodeService,
+  ) { }
 
-  getFeedback(appName: string) {
-    const appKey = this.getApp(appName) ? this.getApp(appName).key : null;
-    let feedback: NodeFeedback;
-    if (appKey && this.nodeInfo && this.nodeInfo.app_feedbacks) {
-      feedback = this.nodeInfo.app_feedbacks.find(fb => fb.key === appKey);
-    }
-    return feedback;
+  ngOnInit() {
+    this.nodeService.node().subscribe(node => this.apps = node.apps);
   }
 }
-

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NodeService } from '../../../../services/node.service';
-import { Node, NodeInfo } from '../../../../app.datatypes';
+import { Node } from '../../../../app.datatypes';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { TerminalComponent } from './terminal/terminal.component';
@@ -17,8 +17,9 @@ import { ButtonComponent } from '../../../layout/button/button.component';
 })
 export class ActionsComponent implements OnInit {
   @Input() node: Node;
-  @Input() nodeInfo: NodeInfo;
   @ViewChild('updateButton') updateButton: ButtonComponent;
+
+  private nodeKey: string;
 
   constructor(
     private nodeService: NodeService,
@@ -29,26 +30,36 @@ export class ActionsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (environment.production) {
-      this.updateButton.loading();
+    // if (environment.production) {
+    //   this.updateButton.loading();
+    //
+    //   this.nodeService.checkUpdate().subscribe(hasUpdate => {
+    //     this.updateButton.reset();
+    //     this.updateButton.notify(hasUpdate);
+    //   });
+    // }
 
-      this.nodeService.checkUpdate().subscribe(hasUpdate => {
-        this.updateButton.reset();
-        this.updateButton.notify(hasUpdate);
-      });
-    }
+    this.nodeKey = this.nodeService.getCurrentNodeKey();
+  }
+
+  applications() {
+    this.router.navigate(['nodes', this.nodeKey, 'apps']);
+  }
+
+  routing() {
+    this.router.navigate(['nodes', this.nodeKey, 'routing']);
   }
 
   reboot() {
-    this.nodeService.reboot().subscribe(
-      () => {
-        this.translate.get('actions.config.success').subscribe(str => {
-          this.snackbar.open(str);
-          this.router.navigate(['nodes']);
-        });
-      },
-      (e) => this.snackbar.open(e.message),
-    );
+    // this.nodeService.reboot().subscribe(
+    //   () => {
+    //     this.translate.get('actions.config.success').subscribe(str => {
+    //       this.snackbar.open(str);
+    //       this.router.navigate(['nodes']);
+    //     });
+    //   },
+    //   (e) => this.snackbar.open(e.message),
+    // );
   }
 
   update() {
@@ -62,21 +73,13 @@ export class ActionsComponent implements OnInit {
   }
 
   configuration() {
-    this.dialog.open(ConfigurationComponent, {
-      data: {
-        node: this.node,
-        discoveries: this.nodeInfo.discoveries,
-      },
-      width: '800px'
-    });
+    this.dialog.open(ConfigurationComponent, {data: {}});
   }
 
   terminal() {
     this.dialog.open(TerminalComponent, {
       width: '1000px',
-      data: {
-        addr: this.node.addr,
-      }
+      data: {},
     });
   }
 

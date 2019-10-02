@@ -1,0 +1,11 @@
+@import 'variables';
+
+.overflow {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+  }
+}

@@ -6,20 +6,54 @@ import { NodeComponent } from './components/pages/node/node.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { SettingsComponent } from './components/pages/settings/settings.component';
 import { PasswordComponent } from './components/pages/settings/password/password.component';
-
-export const PATHS = {
-  login: 'login',
-  nodes: 'nodes',
-  nodeDetail: 'nodes/:key'
-};
+import { RoutingComponent } from './components/pages/node/routing/routing.component';
+import { AppsComponent } from './components/pages/node/apps/apps.component';
+import { SidenavComponent } from './components/layout/sidenav/sidenav.component';
 
 const routes: Routes = [
-  { path: PATHS.login, component: LoginComponent, canActivate: [AuthGuardService] },
-  { path: PATHS.nodes, component: NodeListComponent, canActivate: [AuthGuardService] },
-  { path: PATHS.nodeDetail, component: NodeComponent, canActivate: [AuthGuardService] },
-  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuardService] },
-  { path: 'settings/password', component: PasswordComponent, canActivate: [AuthGuardService] },
-  { path: '**', redirectTo: 'login' },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: '',
+    component: SidenavComponent,
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: 'nodes',
+        component: NodeListComponent
+      },
+      {
+        path: 'nodes/:key',
+        component: NodeComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'routing',
+            pathMatch: 'full'
+          },
+          {
+            path: 'routing',
+            component: RoutingComponent
+          },
+          {
+            path: 'apps',
+            component: AppsComponent
+          },
+        ]
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent
+      },
+    ],
+  },
+  {
+    path: '**',
+    redirectTo: 'login'
+  },
 ];
 
 @NgModule({

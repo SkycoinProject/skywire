@@ -1,5 +1,6 @@
 @import "variables";
 @import "utilities/theme";
+@import "bootstrap_overrides";
 @import "~bootstrap/scss/functions";
 
 :host::ng-deep
@@ -70,4 +71,8 @@
       text-transform: uppercase;
     }
   }
+}
+
+.public-key {
+  font-size: 14px;
 }
