@@ -34,7 +34,7 @@ Also, the Hypervisor instance must be running in `http://localhost:8080`. If it 
 Run `npm run start` to start a dev server. If you followed the steps indicated in the [ssl folder](./ssl/README.md), the server
 will use your custom SSL certificate. If not, the server will use an automatically created one.
 
-After the server is started, you can access the app by navigating to `http://localhost:4200/#/nodes` with a web browser (note
+After the server is started, you can access the app by navigating to `http://localhost:4200` with a web browser (note
 that you could get a security warning if the SSL certificate is not in the trusted certificates list). The app will
 automatically reload if you change any of the source files.
 

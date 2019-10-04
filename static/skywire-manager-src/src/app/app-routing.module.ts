@@ -17,16 +17,16 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: '',
+    path: 'nodes',
     component: SidenavComponent,
     canActivate: [AuthGuardService],
     children: [
       {
-        path: 'nodes',
+        path: '',
         component: NodeListComponent
       },
       {
-        path: 'nodes/:key',
+        path: ':key',
         component: NodeComponent,
         children: [
           {
