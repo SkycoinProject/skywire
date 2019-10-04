@@ -3,9 +3,10 @@ import {ApiService} from './api.service';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export enum AUTH_STATE {
-  LOGIN_OK, LOGIN_FAIL, CHANGE_PASSWORD
+  AUTH_DISABLED, LOGIN_OK, LOGIN_FAIL, CHANGE_PASSWORD
 }
 
 @Injectable({
@@ -29,10 +30,14 @@ export class AuthService {
   }
 
   checkLogin(): Observable<AUTH_STATE> {
-    return this.apiService.post('checkLogin', {}, {responseType: 'text'})
+    return this.apiService.post('user', {}, {responseType: 'text', api2: true })
       .pipe(
         map(() => AUTH_STATE.LOGIN_OK),
         catchError(err => {
+          console.info(err);
+          if ((err as HttpErrorResponse).status === 405) {
+            return of(AUTH_STATE.AUTH_DISABLED);
+          }
           if (err.error.includes('Unauthorized')) {
             return of(AUTH_STATE.LOGIN_FAIL);
           }
