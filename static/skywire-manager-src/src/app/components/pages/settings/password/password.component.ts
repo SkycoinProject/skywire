@@ -39,8 +39,8 @@ export class PasswordComponent implements OnInit {
       this.authService.changePassword(this.form.get('oldPassword').value, this.form.get('newPassword').value)
         .subscribe(
           () => {
-            this.router.navigate(['login']);
-            this.snackbar.open('Log in with your new password');
+            this.router.navigate(['nodes']);
+            this.snackbar.open('Password changed');
           },
           (err) => {
             this.errorSnack.open(err);

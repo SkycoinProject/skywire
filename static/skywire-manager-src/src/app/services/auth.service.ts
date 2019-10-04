@@ -19,7 +19,7 @@ export class AuthService {
   ) { }
 
   login(password: string) {
-    return this.apiService.post('login', {pass: password})
+    return this.apiService.post('login', { username: 'admin', password: password }, { api2: true, type: 'json' })
       .pipe(
         tap(status => {
           if (status !== true) {
@@ -30,15 +30,15 @@ export class AuthService {
   }
 
   checkLogin(): Observable<AUTH_STATE> {
-    return this.apiService.post('user', {}, {responseType: 'text', api2: true })
+    return this.apiService.get('user', { responseType: 'text', api2: true })
       .pipe(
         map(() => AUTH_STATE.LOGIN_OK),
         catchError(err => {
-          console.info(err);
-          if ((err as HttpErrorResponse).status === 405) {
+          if ((err as HttpErrorResponse).status === 504) {
             return of(AUTH_STATE.AUTH_DISABLED);
           }
-          if (err.error.includes('Unauthorized')) {
+
+          if ((err as HttpErrorResponse).status === 401 || err.error.includes('Unauthorized')) {
             return of(AUTH_STATE.LOGIN_FAIL);
           }
 
@@ -54,9 +54,11 @@ export class AuthService {
   }
 
   changePassword(oldPass: string, newPass: string): Observable<boolean> {
-    return this.apiService.post('updatePass', {oldPass, newPass}, {responseType: 'text'})
+    return this.apiService.post('change-password',
+      {old_password: oldPass, new_password: newPass},
+      { responseType: 'text', type: 'json', api2: true })
       .pipe(map(result => {
-        if (result === 'true') {
+        if (typeof result === 'string' && result.trim() === 'true') {
           return true;
         } else {
           if (result === 'Please do not change the default password.') {
@@ -65,6 +67,12 @@ export class AuthService {
 
           throw new Error(this.translateService.instant('settings.password.errors.bad-old-password'));
         }
+      }), catchError(err => {
+        if ((err as HttpErrorResponse).status === 400) {
+          throw new Error(this.translateService.instant('settings.password.errors.invalid-password-format'));
+        }
+
+        throw new Error(this.translateService.instant('settings.password.errors.bad-old-password'));
       }));
   }
 }

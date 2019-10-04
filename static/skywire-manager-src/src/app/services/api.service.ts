@@ -29,7 +29,8 @@ export class ApiService {
     return this.http.request(method, this.getUrl(url, options), {
       ...this.getRequestOptions(options),
       responseType: options.responseType ? options.responseType : 'json',
-      body: this.getPostBody(body),
+      withCredentials: true,
+      body: this.getPostBody(body, options),
     })
       .pipe(
         map(result => this.successHandler(result)),
@@ -61,7 +62,11 @@ export class ApiService {
     return requestOptions;
   }
 
-  private getPostBody(body: any) {
+  private getPostBody(body: any, options: any) {
+    if (options.type === 'json') {
+      return JSON.stringify(body);
+    }
+
     const formData = new FormData();
 
     Object.keys(body).forEach(key => formData.append(key, body[key]));
