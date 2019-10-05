@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ButtonComponent } from '../../layout/button/button.component';
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorsnackbarService } from '../../../services/errorsnackbar.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-node-list',
@@ -26,6 +27,7 @@ export class NodeListComponent implements OnInit, OnDestroy {
     private errorSnackBar: ErrorsnackbarService,
     private dialog: MatDialog,
     private translate: TranslateService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -55,7 +57,10 @@ export class NodeListComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    //
+    this.authService.logout().subscribe(
+      () => this.router.navigate(['login']),
+      () => this.errorSnackBar.open(this.translate.instant('nodes.logout-error'))
+    );
   }
 
   open(node: Node) {

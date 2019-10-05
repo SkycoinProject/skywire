@@ -72,7 +72,8 @@
     "view-node": "View node",
     "delete-node": "Delete node",
     "error-load": "An error occurred while refreshing nodes: {{error}}",
-    "empty": "There aren't any nodes connected to this manager."
+    "empty": "There aren't any nodes connected to this manager.",
+    "logout-error": "Error logging out."
   },
 
   "settings": {

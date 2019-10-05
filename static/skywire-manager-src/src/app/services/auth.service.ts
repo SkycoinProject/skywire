@@ -49,6 +49,17 @@ export class AuthService {
       );
   }
 
+  logout() {
+    return this.apiService.post('logout', {}, { api2: true, type: 'json' })
+      .pipe(
+        tap(status => {
+          if (status !== true) {
+            throw new Error();
+          }
+        }),
+      );
+  }
+
   authToken(): Observable<string> {
     return this.apiService.post('checkLogin', {}, {responseType: 'text'});
   }
