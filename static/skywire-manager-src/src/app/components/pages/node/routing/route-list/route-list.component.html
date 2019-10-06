@@ -5,7 +5,7 @@
     class="table-translucid fit"
     mat-table
     [dataSource]="dataSource"
-    *ngIf="dataSource.data.length > 0"
+    *ngIf="dataSource.data && dataSource.data.length > 0"
   >
     <ng-container matColumnDef="key">
       <th mat-header-cell *matHeaderCellDef class="bold">{{ 'routes.key' | translate }}</th>
@@ -28,4 +28,8 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <div *ngIf="!dataSource.data || dataSource.data.length === 0">
+    <span class="text">Node doesn't have any routes.</span>
+  </div>
 </div>

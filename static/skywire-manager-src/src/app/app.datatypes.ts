@@ -1,4 +1,5 @@
 export interface Node {
+  tcp_addr: string;
   local_pk: string;
   apps: Application[];
   transports: Transport[];
@@ -21,7 +22,7 @@ export interface Transport {
 }
 
 export interface TransportLog {
-  received: number|null;
+  recv: number|null;
   sent: number|null;
 }
 

@@ -34,7 +34,7 @@ export class ApiService {
     })
       .pipe(
         map(result => this.successHandler(result)),
-        catchError(error => this.errorHandler(error)),
+        catchError(error => this.errorHandler(error, options)),
       );
   }
 
@@ -82,9 +82,9 @@ export class ApiService {
     return result;
   }
 
-  private errorHandler(error: HttpErrorResponse) {
-    if (error.url && !error.url.includes('user')) {
-      if (error.error.includes('Unauthorized')) {
+  private errorHandler(error: HttpErrorResponse, options: any) {
+    if (!options.ignoreAuth) {
+      if (error.status === 401) {
         this.router.navigate(['login']);
       }
 

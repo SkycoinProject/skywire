@@ -2,6 +2,7 @@
   "common": {
     "skywire-manager": "Skywire Manager",
     "public-key": "Public Key",
+    "ip": "IP",
     "domain": "Domain",
     "save": "Save",
     "edit": "Edit",
@@ -66,7 +67,6 @@
     "refresh": "Refresh",
     "settings": "Settings",
     "logout": "Logout",
-    "ip": "IP",
     "running": "Running",
     "edit-label": "Edit label",
     "view-node": "View node",
@@ -84,7 +84,7 @@
       "errors": {
         "bad-old-password": "The provided old password is not correct.",
         "old-password-required": "Old password is required",
-        "new-password-error": "Password must be 4-20 characters long",
+        "new-password-error": "Password must be 6-64 characters long",
         "invalid-password-format": "The new password is not valid",
         "passwords-not-match": "Passwords do not match",
         "default-password": "Don't use the default password (1234)"

@@ -19,7 +19,7 @@ export class AuthService {
   ) { }
 
   login(password: string) {
-    return this.apiService.post('login', { username: 'admin', password: password }, { api2: true, type: 'json' })
+    return this.apiService.post('login', { username: 'admin', password: password }, { api2: true, type: 'json', ignoreAuth: true })
       .pipe(
         tap(status => {
           if (status !== true) {
@@ -29,8 +29,8 @@ export class AuthService {
       );
   }
 
-  checkLogin(): Observable<AUTH_STATE> {
-    return this.apiService.get('user', { responseType: 'text', api2: true })
+  checkLogin(deactivateAuthRedirects = false): Observable<AUTH_STATE> {
+    return this.apiService.get('user', { responseType: 'text', api2: true, ignoreAuth: deactivateAuthRedirects })
       .pipe(
         map(() => AUTH_STATE.LOGIN_OK),
         catchError(err => {

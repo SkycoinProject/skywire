@@ -38,6 +38,7 @@
       border: none;
       display: flex;
       cursor: pointer;
+      align-items: center;
 
       &:disabled {
         color: $light-gray;

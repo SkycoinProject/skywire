@@ -44,8 +44,15 @@ const routes: Routes = [
           },
         ]
       },
+    ],
+  },
+  {
+    path: 'settings',
+    component: SidenavComponent,
+    canActivate: [AuthGuardService],
+    children: [
       {
-        path: 'settings',
+        path: '',
         component: SettingsComponent
       },
     ],

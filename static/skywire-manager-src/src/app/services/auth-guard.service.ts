@@ -16,7 +16,7 @@ export class AuthGuardService implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.authService.checkLogin().pipe(map((authState: AUTH_STATE) => {
+    return this.authService.checkLogin(true).pipe(map((authState: AUTH_STATE) => {
       // If the user is trying to access "Login" page while he is already logged in or the
       // auth is disabled, redirect him to "Nodes" page
       if (route.routeConfig.path === 'login' && (authState === AUTH_STATE.LOGIN_OK || authState === AUTH_STATE.AUTH_DISABLED)) {

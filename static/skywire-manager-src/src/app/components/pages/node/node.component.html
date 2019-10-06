@@ -8,12 +8,21 @@
       <!--<div class="mt-4">-->
         <!--<app-status [nodeData]="nodeData"></app-status>-->
       <!--</div>-->
-      <div class="container-elevated-translucid d-flex justify-content-between align-items-center mt-4">
-          <span class="mr-2 flex-shrink-0 public-key">{{ 'common.public-key' | translate }}</span>
+      <div class="container-elevated-translucid mt-4">
+        <div class="top-row align-items-center">
+          <span class="row-title mr-2 flex-shrink-0">{{ 'common.public-key' | translate }}</span>
           <app-copy-to-clipboard-text
-            class="font-smaller text-truncate mw-0"
+            class="row-content font-smaller text-truncate mw-0"
             [text]="node.local_pk">
           </app-copy-to-clipboard-text>
+        </div>
+        <div class="top-row align-items-center">
+          <span class="row-title mr-2 flex-shrink-0">{{ 'common.ip' | translate }}</span>
+          <app-copy-to-clipboard-text
+            class="row-content font-smaller text-truncate mw-0"
+            [text]="node.tcp_addr">
+          </app-copy-to-clipboard-text>
+        </div>
       </div>
 
       <router-outlet></router-outlet>

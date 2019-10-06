@@ -29,9 +29,9 @@
         </ng-container>
 
         <ng-container matColumnDef="label">
-          <th mat-header-cell *matHeaderCellDef class="bold">{{ 'nodes.ip' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef class="bold">{{ 'common.ip' | translate }}</th>
           <td id="nodeLabel" mat-cell *matCellDef="let node;">
-            192.168.0.2
+            {{ node.tcp_addr }}
           </td>
         </ng-container>
 
@@ -96,7 +96,7 @@
         <!--</ng-container>-->
 
         <!--<ng-container matColumnDef="label">-->
-          <!--<th mat-header-cell *matHeaderCellDef class="bold">{{ 'nodes.ip' | translate }}</th>-->
+          <!--<th mat-header-cell *matHeaderCellDef class="bold">{{ 'common.ip' | translate }}</th>-->
           <!--<td id="nodeLabel" mat-cell *matCellDef="let node;">-->
             <!--192.168.0.2-->
           <!--</td>-->
