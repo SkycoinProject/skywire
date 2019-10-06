@@ -196,8 +196,14 @@
     "create": "Create transport",
     "delete": "Delete transport",
     "dialog": {
+      "remote-key": "Remote private key",
+      "transport-type": "Transport type",
       "success": "Transport created",
-      "error": "Unable to create transport: {{error}}"
+      "error": "Unable to create transport: {{error}}",
+      "errors": {
+        "remote-key-error": "The remote private key must be 66 characters long",
+        "transport-type-error": "The transport type is required"
+      }
     }
   },
 

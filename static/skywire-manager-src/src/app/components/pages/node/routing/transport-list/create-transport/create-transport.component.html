@@ -1,24 +1,36 @@
 <app-dialog [headline]="'transports.create' | translate">
-  <div [formGroup]="form">
+  <form [formGroup]="form">
     <mat-form-field>
-      <input matInput >
+      <input
+        formControlName="remoteKey"
+        maxlength="66"
+        [placeholder]="'transports.dialog.remote-key' | translate"
+        matInput>
+      <mat-error>
+        {{ 'transports.dialog.errors.remote-key-error' | translate }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-select formControlName="type">
+      <mat-select
+        formControlName="type"
+        [placeholder]="'transports.dialog.transport-type' | translate">
         <mat-option *ngFor="let type of types" [value]="type">{{ type }}</mat-option>
       </mat-select>
+      <mat-error>
+        {{ 'transports.dialog.errors.transport-type-error' | translate }}
+      </mat-error>
     </mat-form-field>
-  </div>
-  <app-button
-    #button
-    (action)="create()"
-    type="mat-raised-button"
-    [disabled]="!form.valid"
-    color="primary"
-    class="float-right"
-  >
-    {{ 'transports.create' | translate }}
-  </app-button>
+
+    <app-button
+      #button
+      (action)="create()"
+      type="mat-raised-button"
+      [disabled]="!form.valid"
+      color="primary"
+      class="float-right">
+      {{ 'transports.create' | translate }}
+    </app-button>
+  </form>
 
 </app-dialog>

@@ -6,7 +6,7 @@ import {
   timer,
   Unsubscribable
 } from 'rxjs';
-import { Node } from '../app.datatypes';
+import { Node, Transport } from '../app.datatypes';
 import { ApiService } from './api.service';
 import { flatMap } from 'rxjs/operators';
 
@@ -58,10 +58,20 @@ export class NodeService {
   refreshNode(nodeKey: string, errorCallback: any = null) {
     this.currentNodeKey = nodeKey;
 
+    let currentNode: Node;
+
     return timer(0, 10000)
-      .pipe(flatMap(() => this.getNode()))
-      .subscribe(
-        (node: Node) => this.currentNode.next(node),
+      .pipe(
+        flatMap(() => this.getNode()),
+        flatMap((node: Node) => {
+          currentNode = node;
+          return this.getTransports();
+        })
+      ).subscribe(
+        (transports: Transport[]) => {
+          currentNode.transports = transports;
+          this.currentNode.next(currentNode);
+        },
         errorCallback,
       );
   }
@@ -76,5 +86,9 @@ export class NodeService {
 
   private getNode(): Observable<Node> {
     return this.apiService.get(`nodes/${this.currentNodeKey}`, { api2: true });
+  }
+
+  private getTransports() {
+    return this.apiService.get(`nodes/${this.currentNodeKey}/transports`, { api2: true });
   }
 }

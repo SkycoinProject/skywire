@@ -29,7 +29,7 @@ export class CreateTransportComponent implements OnInit {
     this.transportService.types(this.nodeService.getCurrentNodeKey()).subscribe(types => this.types = types);
 
     this.form = this.formBuilder.group({
-      'remoteKey': ['', Validators.required],
+      'remoteKey': ['', Validators.compose([Validators.required, Validators.minLength(66), Validators.maxLength(66)])],
       'type': ['', Validators.required],
     });
   }

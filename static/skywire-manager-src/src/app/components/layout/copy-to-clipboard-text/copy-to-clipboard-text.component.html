@@ -1,5 +1,5 @@
 <div class="cursor-pointer wrapper"
-     [clipboard]="fullText"
+     [clipboard]="text"
      (copyEvent)="onCopyToClipboardClicked()"
      [matTooltip]="'copy.tooltip' | translate"
 >
@@ -14,10 +14,10 @@
 <!--<mat-menu [overlapTrigger]="false" #appMenu="matMenu">-->
   <!--<div-->
     <!--mat-menu-item-->
-    <!--[clipboard]="fullText"-->
+    <!--[clipboard]="text"-->
     <!--[matTooltip]="'copy.tooltip' | translate"-->
     <!--(copyEvent)="onCopyToClipboardClicked()">-->
-    <!--{{ fullText }}-->
+    <!--{{ text }}-->
     <!--<button style="margin-left: 15px;" color="accent" mat-icon-button>-->
       <!--<mat-icon aria-label="content_copy">content_copy</mat-icon>-->
     <!--</button>-->

@@ -13,9 +13,11 @@ export class TransportService {
   create(key: string, remoteKey: string, type: string) {
     return this.apiService.post(`nodes/${key}/transports`, {
       remote_pk: remoteKey,
-      type: type,
+      transport_type: type,
+      public: true,
     }, {
       api2: true,
+      type: 'json',
     });
   }
 

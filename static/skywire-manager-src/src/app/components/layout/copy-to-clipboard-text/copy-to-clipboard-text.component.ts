@@ -13,7 +13,6 @@ export class CopyToClipboardTextComponent implements OnInit {
   @Input() shortTextLength = 6;
   // @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   tooltipText: string;
-  fullText: string;
 
   get shortText() {
     const lastTextIndex = this.text.length,
@@ -35,7 +34,6 @@ export class CopyToClipboardTextComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fullText = this.text;
     if (this.short) {
       this.tooltipText = 'copy.click-to-see';
     } else {
