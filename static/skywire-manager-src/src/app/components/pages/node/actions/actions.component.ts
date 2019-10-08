@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {UpdateNodeComponent} from './update-node/update-node.component';
 import { environment } from '../../../../../environments/environment';
 import { ButtonComponent } from '../../../layout/button/button.component';
+import { BasicTerminalComponent } from './basic-terminal/basic-terminal.component';
 
 @Component({
   selector: 'app-actions',
@@ -77,9 +78,12 @@ export class ActionsComponent implements OnInit {
   }
 
   terminal() {
-    this.dialog.open(TerminalComponent, {
+    this.dialog.open(BasicTerminalComponent, {
       width: '1000px',
-      data: {},
+      data: {
+        addr: this.node.tcp_addr,
+        pk: this.node.local_pk,
+      },
     });
   }
 

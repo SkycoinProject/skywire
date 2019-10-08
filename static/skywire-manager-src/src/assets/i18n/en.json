@@ -120,6 +120,8 @@
     },
     "terminal": {
       "title": "Terminal",
+      "input-start": "Skywire terminal for {{address}}",
+      "error": "Unexpected error while trying to execute the command.",
       "exiting": "Exiting terminal..."
     },
     "update": {

@@ -86,6 +86,7 @@ import { AutoScalePipe } from './pipes/auto-scale.pipe';
 import { SidenavComponent } from './components/layout/sidenav/sidenav.component';
 import { SidenavContentComponent } from './components/layout/sidenav/sidenav-content/sidenav-content.component';
 import { LanguageComponent } from './components/pages/settings/language/language.component';
+import { BasicTerminalComponent } from './components/pages/node/actions/basic-terminal/basic-terminal.component';
 
 @NgModule({
   declarations: [
@@ -144,6 +145,7 @@ import { LanguageComponent } from './components/pages/settings/language/language
     SidenavComponent,
     SidenavContentComponent,
     LanguageComponent,
+    BasicTerminalComponent,
   ],
   entryComponents: [
     ConfigurationComponent,
@@ -160,6 +162,7 @@ import { LanguageComponent } from './components/pages/settings/language/language
     KeyInputComponent,
     UpdateNodeComponent,
     CreateTransportComponent,
+    BasicTerminalComponent,
   ],
   imports: [
     BrowserModule,

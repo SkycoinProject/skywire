@@ -88,7 +88,7 @@ export class ApiService {
         this.router.navigate(['login']);
       }
 
-      if (error.error.includes('change password')) {
+      if (error.error && typeof error.error === 'string' && error.error.includes('change password')) {
         this.router.navigate(['settings/password']);
       }
     }
