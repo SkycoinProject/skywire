@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild, Renderer2, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,6 +16,33 @@ export class BasicTerminalComponent implements OnInit, OnDestroy {
   @ViewChild('dialogContent') dialogContentElement: ElementRef<HTMLDivElement>;
   private terminal: any;
   private subscription: Subscription;
+
+  private history: string[] = [];
+  private historyIndex = 0;
+  private currentInputText = '';
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (this.terminal.hasFocus() && this.history.length > 0) {
+      if (event.keyCode === 38) {
+        if (this.historyIndex === this.history.length) {
+          this.currentInputText = this.terminal.getInputContent();
+        }
+
+        this.historyIndex = this.historyIndex > 0 ? this.historyIndex - 1 : 0;
+        this.terminal.changeInputContent(this.history[this.historyIndex]);
+      }
+
+      if (event.keyCode === 40) {
+        this.historyIndex = this.historyIndex < this.history.length ? this.historyIndex + 1 : this.history.length;
+        if (this.historyIndex !== this.history.length) {
+          this.terminal.changeInputContent(this.history[this.historyIndex]);
+        } else {
+          this.terminal.changeInputContent(this.currentInputText);
+        }
+      }
+    }
+  }
 
   constructor(
     public dialogRef: MatDialogRef<BasicTerminalComponent>,
@@ -48,6 +75,10 @@ export class BasicTerminalComponent implements OnInit, OnDestroy {
 
   private waitForInput() {
     this.terminal.input(this.translate.instant('actions.terminal.input-start', { address: this.data.addr }), (input) => {
+      this.history.push(input);
+      this.historyIndex = this.history.length;
+      this.currentInputText = '';
+
       this.subscription = this.apiService.post(`exec/${this.data.pk}`, { command: input }, { api2: true, type: 'json' })
       .subscribe(response => {
         if (response.output) {

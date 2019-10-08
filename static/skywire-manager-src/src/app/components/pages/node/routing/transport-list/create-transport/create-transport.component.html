@@ -7,8 +7,13 @@
         [placeholder]="'transports.dialog.remote-key' | translate"
         matInput>
       <mat-error>
-        {{ 'transports.dialog.errors.remote-key-error' | translate }}
+        <ng-container *ngIf="!this.form.get('remoteKey').hasError('pattern');else hexError">
+          {{ 'transports.dialog.errors.remote-key-length-error' | translate }}
+        </ng-container>
       </mat-error>
+      <ng-template #hexError>
+        {{ 'transports.dialog.errors.remote-key-chars-error' | translate }}
+      </ng-template>
     </mat-form-field>
 
     <mat-form-field>

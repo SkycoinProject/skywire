@@ -118,6 +118,18 @@ var Terminal = (function () {
 			}
 		}
 
+		this.getInputContent = function () {
+			if (inputField) {
+				return inputField.value;
+			}
+
+			return '';
+		}
+
+		this.hasFocus = function () {
+			return inputField && document.activeElement === inputField;
+		}
+
 		this.password = function (message, callback) {
 			promptInput(this, message, PROMPT_PASSWORD, callback)
 		}
