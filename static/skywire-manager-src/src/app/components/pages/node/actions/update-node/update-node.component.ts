@@ -23,7 +23,7 @@ export class UpdateNodeComponent implements OnInit {
 
   private fetchUpdate() {
     this.isLoading = true;
-    this.nodeService.checkUpdate().subscribe(this.onFetchUpdateSuccess.bind(this), this.onFetchUpdateError.bind(this));
+    // this.nodeService.checkUpdate().subscribe(this.onFetchUpdateSuccess.bind(this), this.onFetchUpdateError.bind(this));
   }
 
   private onFetchUpdateSuccess(updateAvailable: boolean) {
@@ -39,7 +39,7 @@ export class UpdateNodeComponent implements OnInit {
   onUpdateClicked() {
     this.isLoading = true;
     this.updateError = false;
-    this.nodeService.update().subscribe(this.onUpdateSuccess.bind(this), this.onUpdateError.bind(this));
+    // this.nodeService.update().subscribe(this.onUpdateSuccess.bind(this), this.onUpdateError.bind(this));
   }
 
   onUpdateSuccess(updated: boolean) {

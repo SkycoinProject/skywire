@@ -1,60 +1,40 @@
 export interface Node {
-  key?: string;
-  addr?: string;
+  tcp_addr: string;
+  local_pk: string;
+  apps: Application[];
+  transports: Transport[];
+  routes_count: number;
+}
+
+export interface Application {
+  name: string;
+  autostart: boolean;
+  port: number;
+  status: number;
+}
+
+export interface Transport {
+  id: string;
+  local_pk: string;
+  remote_pk: string;
   type: string;
-  send_bytes: number;
-  recv_bytes: number;
-  last_ack_time: number;
-  start_time: number;
+  log?: TransportLog;
 }
 
-export interface NodeApp {
-  key: string;
-  attributes: string[]|null;
-  allow_nodes: any;
+export interface TransportLog {
+  recv: number|null;
+  sent: number|null;
 }
 
-export interface NodeInfo {
-  app_feedbacks: NodeFeedback[]|null;
-  transports: NodeTransport[]|null;
-  discoveries: NodeDiscovery|null;
-  os: string;
-  tag: string;
-  version: string;
+export interface Route {
+  key: number;
+  rule: string;
 }
 
-export interface NodeStatusInfo extends Node {
-  status: NodeStatus;
-}
 
-export enum NodeStatus {
-  DISCOVERED = 'discovered',
-  ONLINE = 'online',
-  OFFLINE = 'offline',
-  UNKNOWN = 'unknown',
-}
 
-export interface NodeData {
-  node: Node;
-  info: NodeInfo;
-  apps: NodeApp[];
-  allNodes: NodeStatusInfo[];
-}
+// old
 
-export interface NodeDiscovery {
-  [key: string]: boolean;
-}
-
-export interface NodeTransport {
-  from_node: string;
-  to_node: string;
-  from_app: string;
-  to_app: string;
-  upload_bandwidth: number;
-  download_bandwidth: number;
-  upload_total: number;
-  download_total: number;
-}
 
 export interface NodeFeedback {
   key: string;
@@ -105,9 +85,4 @@ export interface SearchResultItem {
   location: string;
   version: string;
   node_version: string[];
-}
-
-export interface DiscoveryAddress {
-  domain: string;
-  publicKey: string;
 }

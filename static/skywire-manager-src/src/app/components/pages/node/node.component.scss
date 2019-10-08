@@ -1,5 +1,6 @@
 @import "variables";
 @import "utilities/theme";
+@import "bootstrap_overrides";
 @import "~bootstrap/scss/functions";
 
 :host::ng-deep
@@ -70,4 +71,20 @@
       text-transform: uppercase;
     }
   }
+}
+
+.top-row {
+  display: flex;
+  
+  .row-title {
+    font-size: 14px;
+  }
+  .row-content {
+    flex-grow: 1;
+    text-align: right;
+  }
+}
+
+.top-row:not(:first-child) {
+  margin-top: 8px;
 }

@@ -2,6 +2,7 @@ dist*
 *.sh
 !static/script/upgrade/*.sh
 !static/script/upgrade/data/*.sh
+!static/skywire-manager-src/ssl/*.sh
 keys
 main
 keys.json
@@ -31,3 +32,5 @@ restart.sh
 skycoin-messenger/monitor/web/dist-manager
 package-lock.json
 .DS_Store
+static/skywire-manager-src/ssl/server.key
+static/skywire-manager-src/ssl/server.crt

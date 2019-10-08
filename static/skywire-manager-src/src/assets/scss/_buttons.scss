@@ -1,3 +1,4 @@
+@import 'variables';
 @import "~@angular/material/theming";
 @include mat-core();
 
@@ -43,4 +44,16 @@
     display: flex;
     align-items: center;
   }
+}
+
+.table-create-record {
+  background: $white;
+  color: $blue-dark;
+  border-radius: 1000px;
+  cursor: pointer;
+}
+
+.table-delete-record {
+  color: #bbb;
+  cursor: pointer;
 }

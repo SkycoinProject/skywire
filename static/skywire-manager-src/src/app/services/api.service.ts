@@ -14,28 +14,36 @@ export class ApiService {
   ) { }
 
   get(url: string, options: any = {}): Observable<any> {
-    return this.request(this.http.get(url, {
-      ...this.getRequestOptions(options),
-      responseType: options.responseType ? options.responseType : 'json',
-    }));
+    return this.request('GET', url, {}, options);
   }
 
   post(url: string, body: any = {}, options: any = {}): Observable<any> {
-    return this.request(this.http.post(
-      url,
-      this.getPostBody(body),
-      {
-        ...this.getRequestOptions(options),
-        responseType: options.responseType ? options.responseType : 'json',
-      },
-    ));
+    return this.request('POST', url, body, options);
   }
 
-  private request(request) {
-    return request.pipe(
-      map(result => this.successHandler(result)),
-      catchError(error => this.errorHandler(error)),
-    );
+  delete(url: string, options: any = {}): Observable<any> {
+    return this.request('DELETE', url, {}, options);
+  }
+
+  private request(method: string, url: string, body: any, options: any) {
+    return this.http.request(method, this.getUrl(url, options), {
+      ...this.getRequestOptions(options),
+      responseType: options.responseType ? options.responseType : 'json',
+      withCredentials: true,
+      body: this.getPostBody(body, options),
+    })
+      .pipe(
+        map(result => this.successHandler(result)),
+        catchError(error => this.errorHandler(error, options)),
+      );
+  }
+
+  private getUrl(url: string, options: any) {
+    if (options.api2) {
+      return `api/${url}`;
+    }
+
+    return url;
   }
 
   private getRequestOptions(options: any) {
@@ -54,7 +62,11 @@ export class ApiService {
     return requestOptions;
   }
 
-  private getPostBody(body: any) {
+  private getPostBody(body: any, options: any) {
+    if (options.type === 'json') {
+      return JSON.stringify(body);
+    }
+
     const formData = new FormData();
 
     Object.keys(body).forEach(key => formData.append(key, body[key]));
@@ -70,13 +82,13 @@ export class ApiService {
     return result;
   }
 
-  private errorHandler(error: HttpErrorResponse) {
-    if (error.url && !error.url.includes('checkLogin')) {
-      if (error.error.includes('Unauthorized')) {
+  private errorHandler(error: HttpErrorResponse, options: any) {
+    if (!options.ignoreAuth) {
+      if (error.status === 401) {
         this.router.navigate(['login']);
       }
 
-      if (error.error.includes('change password')) {
+      if (error.error && typeof error.error === 'string' && error.error.includes('change password')) {
         this.router.navigate(['settings/password']);
       }
     }

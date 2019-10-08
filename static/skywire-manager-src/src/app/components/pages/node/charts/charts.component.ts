@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { NodeTransport } from '../../../../app.datatypes';
+import { Transport } from '../../../../app.datatypes';
 
 @Component({
   selector: 'app-charts',
@@ -7,17 +7,22 @@ import { NodeTransport } from '../../../../app.datatypes';
   styleUrls: ['./charts.component.scss']
 })
 export class ChartsComponent implements OnChanges {
-  @Input() transports: NodeTransport[];
+  @Input() transports: Transport[];
   sendingTotal = 0;
   receivingTotal = 0;
   sendingHistory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   receivingHistory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   ngOnChanges(changes: SimpleChanges) {
-    const transports: NodeTransport[] = changes.transports.currentValue;
+    const transports: Transport[] = changes.transports.currentValue;
 
-    this.sendingTotal = transports.reduce((total, transport) => total + transport.upload_bandwidth, 0);
-    this.receivingTotal = transports.reduce((total, transport) => total + transport.download_bandwidth, 0);
+    if (transports) {
+      this.sendingTotal = transports.reduce((total, transport) => total + transport.log.sent, 0);
+      this.receivingTotal = transports.reduce((total, transport) => total + transport.log.recv, 0);
+    } else {
+      this.sendingTotal = 0;
+      this.receivingTotal = 0;
+    }
 
     this.sendingHistory.push(this.sendingTotal);
     this.receivingHistory.push(this.receivingTotal);

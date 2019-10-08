@@ -2,6 +2,7 @@
   "common": {
     "skywire-manager": "Skywire Manager",
     "public-key": "Public Key",
+    "ip": "IP",
     "domain": "Domain",
     "save": "Save",
     "edit": "Edit",
@@ -64,13 +65,15 @@
 
   "nodes": {
     "refresh": "Refresh",
-    "label": "Label",
+    "settings": "Settings",
+    "logout": "Logout",
     "running": "Running",
     "edit-label": "Edit label",
     "view-node": "View node",
     "delete-node": "Delete node",
-    "error-load": "An error occurred while refreshing nodes",
-    "empty": "There aren't any nodes connected to this manager."
+    "error-load": "An error occurred while refreshing nodes: {{error}}",
+    "empty": "There aren't any nodes connected to this manager.",
+    "logout-error": "Error logging out."
   },
 
   "settings": {
@@ -81,14 +84,13 @@
       "errors": {
         "bad-old-password": "The provided old password is not correct.",
         "old-password-required": "Old password is required",
-        "new-password-error": "Password must be 4-20 characters long",
+        "new-password-error": "Password must be 6-64 characters long",
+        "invalid-password-format": "The new password is not valid",
         "passwords-not-match": "Passwords do not match",
         "default-password": "Don't use the default password (1234)"
       }
     },
-    "seconds": "seconds",
     "change-password": "Change password",
-    "refresh-rate": "Refresh rate",
     "language": "Language"
   },
 
@@ -100,9 +102,11 @@
 
   "actions": {
     "menu": {
+      "apps": "Applications",
+      "routing": "Routing",
       "nodes": "Nodes",
       "terminal": "Terminal",
-      "config": "Discovery",
+      "config": "Configuration",
       "update": "Check update",
       "reboot": "Reboot"
     },
@@ -116,6 +120,8 @@
     },
     "terminal": {
       "title": "Terminal",
+      "input-start": "Skywire terminal for {{address}}",
+      "error": "Unexpected error while trying to execute the command.",
       "exiting": "Exiting terminal..."
     },
     "update": {
@@ -187,8 +193,26 @@
   },
 
   "transports": {
-    "from": "From node/app",
-    "to": "To node/app"
+    "remote": "Remote node",
+    "type": "Type",
+    "create": "Create transport",
+    "delete": "Delete transport",
+    "dialog": {
+      "remote-key": "Remote public key",
+      "transport-type": "Transport type",
+      "success": "Transport created",
+      "error": "Unable to create transport: {{error}}",
+      "errors": {
+        "remote-key-length-error": "The remote public key must be 66 characters long",
+        "remote-key-chars-error": "The remote public key must only contain hexadecimal characters",
+        "transport-type-error": "The transport type is required"
+      }
+    }
+  },
+
+  "routes": {
+    "key": "Key",
+    "rule": "Rule"
   },
 
   "copy": {

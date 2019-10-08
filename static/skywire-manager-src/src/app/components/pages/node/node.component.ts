@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NodeService } from '../../../services/node.service';
-import { Node, NodeData, NodeStatus } from '../../../app.datatypes';
+import { Node } from '../../../app.datatypes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -13,12 +13,10 @@ import { ErrorsnackbarService } from '../../../services/errorsnackbar.service';
   styleUrls: ['./node.component.scss']
 })
 export class NodeComponent implements OnInit, OnDestroy {
-  public showMenu = false;
-  nodeData: NodeData;
-  managerIp: string;
-  managerKey: string;
+  showMenu = false;
+  node: Node;
 
-  private refreshSubscription: Subscription;
+  private subscription: Subscription;
 
   constructor(
     private nodeService: NodeService,
@@ -32,60 +30,21 @@ export class NodeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const key: string = this.route.snapshot.params['key'];
 
-    this.nodeService.node(key).subscribe(
-      (node: Node) => {
-        this.nodeService.setCurrentNode({ key, ...node });
+    this.subscription = this.nodeService.node().subscribe(
+      (node: Node) => this.node = node,
+      this.onError.bind(this),
+    );
 
-        this.refreshSubscription = this.nodeService.nodeData().subscribe((nodeData: NodeData) => {
-          // Fake data used to style the list because it is
-          // difficult to see real transports while developing.
-          // const transport = {
-          //   download_bandwidth: 1333323,
-          //   download_total: 4323331,
-          //   from_app: '02746d5570118259d98e0ee445bc4ae82ecda258cb64e87d5f1f48cc29badb492f',
-          //   to_app: '02746d5570118259d98e0ee445bc4ae82ecda258cb64e87d5f1f48cc29badb492f',
-          //   from_node: '02746d5570118259d98e0ee445bc4ae82ecda258cb64e87d5f1f48cc29badb492f',
-          //   to_node: '02746d5570118259d98e0ee445bc4ae82ecda258cb64e87d5f1f48cc29badb492f',
-          //   upload_bandwidth: 100,
-          //   upload_total: 33333333
-          // };
-          // nodeData.info.transports = [transport, transport, transport];
-          this.nodeData = nodeData;
-        });
-
-        this.refreshSubscription.add(
-          this.nodeService.refreshNodeData(this.onError.bind(this))
-        );
-
-        this.nodeService.serverInfo().subscribe(info => {
-          const data = info.split('-');
-
-          this.managerIp = data[0].replace('localhost', '127.0.0.1');
-          this.managerKey = data[1];
-        });
-      },
-      () => this.onError(),
+    this.subscription.add(
+      this.nodeService.refreshNode(key, this.onError.bind(this))
     );
   }
 
-  /*get managerIp() {
-    let ipText = this.translate.instant('node.details.manager-ip-not-found');
-    const manager = this.nodeData.allNodes.find((node) => isManager(node));
-
-    if (manager && manager.addr) {
-      ipText = manager.addr;
-    }
-
-    return ipText;
-  }*/
-
   ngOnDestroy() {
-    if (this.refreshSubscription) {
-      this.refreshSubscription.unsubscribe();
-    }
+    this.subscription.unsubscribe();
   }
 
-  public toggleMenu() {
+  toggleMenu() {
     this.showMenu = !this.showMenu;
   }
 
@@ -94,23 +53,5 @@ export class NodeComponent implements OnInit, OnDestroy {
       this.errorSnackBar.open(str);
       this.router.navigate(['nodes']);
     });
-  }
-
-  get operationalNodesCount(): number {
-    return this.nodeData.allNodes.filter((node) => node.status === NodeStatus.DISCOVERED).length;
-  }
-
-  get operationalNodesClass(): string {
-    const count = this.operationalNodesCount;
-
-    if (count === 0) {
-      return 'dot-red';
-    }
-
-    if (count < this.nodeData.allNodes.length) {
-      return 'dot-yellow';
-    }
-
-    return 'dot-green';
   }
 }

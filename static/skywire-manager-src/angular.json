@@ -31,7 +31,7 @@
                 "src/assets/scss"
               ]
             },
-            "scripts": []
+            "scripts": ["src/assets/scripts/terminal.js"]
           },
           "configurations": {
             "production": {
