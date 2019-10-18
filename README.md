@@ -49,15 +49,15 @@ Now if you read that you must realize that if you use a different IP set you wil
 ### Unix systems
 
 ```
-mkdir -p $GOPATH/src/github.com/skycoin
-cd $GOPATH/src/github.com/skycoin
-git clone https://github.com/skycoin/skywire.git
+mkdir -p $GOPATH/src/github.com/skycoinproject
+cd $GOPATH/src/github.com/skycoinproject
+git clone https://github.com/skycoinproject/skywire.git
 ```
 
-Build the binaries for skywire
+Build the binaries for Skywire:
 
 ```
-cd $GOPATH/src/github.com/skycoin/skywire/cmd
+cd $GOPATH/src/github.com/skycoinproject/skywire/cmd
 go install ./...
 ```
 
@@ -67,7 +67,7 @@ If you are using the default network IP set you are set, follow to the next step
 
 If you uses a different IP set you need to modify the file in ```static/script/skywire.defaults```, in particular the variable called ```MANAGER_IP``` in the default file it points to the default manager IP, in the case of a different IP set this will need to be changed to the manager IP.
 
-Just for a matter of precaution, after modify this file be sure that there isn't a fille called ```/etc/default/skywire``` if it's there erase it. It will be updated once you run skywire.
+Just for a matter of precaution, after modify this file be sure that there isn't a fille called ```/etc/default/skywire``` if it's there erase it. It will be updated once you run Skywire.
 
 ## Run Skywire
 
@@ -76,15 +76,15 @@ Just for a matter of precaution, after modify this file be sure that there isn't
 #### Run Skywire Manager
 ```
 cd $GOPATH/bin
-./skywire-manager -web-dir ${GOPATH}/src/github.com/skycoin/skywire/static/skywire-manager
+./skywire-manager -web-dir ${GOPATH}/src/github.com/skycoinproject/skywire/static/skywire-manager
 ```
 
-`tip: If you run with the above command, you will not be able to close the current window or you will close Skywire Manger.`
+`tip: If you run with the above command, you will not be able to close the current window or you will close Skywire Manager.`
 
 If you need to close the current window and continue to run Skywire Manager, you can use
 ```
 cd $GOPATH/bin
-nohup ./skywire-manager -web-dir ${GOPATH}/src/github.com/skycoin/skywire/static/skywire-manager > /dev/null 2>&1 &sleep 3
+nohup ./skywire-manager -web-dir ${GOPATH}/src/github.com/skycoinproject/skywire/static/skywire-manager > /dev/null 2>&1 &sleep 3
 ```
 
 `Note: do not execute the above two commands at the same time, just select one of them.`
@@ -95,7 +95,9 @@ Open a new command window
 
 ```
 cd $GOPATH/bin
-./skywire-node -connect-manager -manager-address 127.0.0.1:5998 -manager-web 127.0.0.1:8000 -discovery-address testnet.skywire.skycoin.com:5999-028ec969bdeb92a1991bb19c948645ac8150468a6919113061899051409de3f243 -address :5000 -web-port :6001 
+
+./skywire-node -connect-manager -manager-address 127.0.0.1:5998 -manager-web 127.0.0.1:8000 -discovery-address testnet.skywire.skycoin.com:5999-028ec969bdeb92a1991bb19c948645ac8150468a6919113061899051409de3f243 -address :5000 -web-port :6001
+
 ```
 
 `tip: If you run with the above command, you will not be able to close the current window or you will close Skywire Node.`
@@ -103,7 +105,9 @@ cd $GOPATH/bin
 If you need to close the current window and continue to run Skywire Manager, you can use
 ```
 cd $GOPATH/bin
-nohup ./skywire-node -connect-manager -manager-address :5998 -manager-web :8000 -discovery-address testnet.skywire.skycoin.com:5999-028ec969bdeb92a1991bb19c948645ac8150468a6919113061899051409de3f243 -address :5000 -web-port :6001 > /dev/null 2>&1 &cd /
+
+nohup ./skywire-node -connect-manager -manager-address :5998 -manager-web :8000 -discovery-address testnet.skywire.skycoin.com:5999-028ec969bdeb92a1991bb19c948645ac8150468a6919113061899051409de3f243 -address :5000 -web-port :6001 > /dev/null 2>&1 &
+
 ```
 
 #### Stop Skywire Manager and Node.
@@ -131,7 +135,7 @@ pkill -F node.pid
 Open a command window on a PC that will act like a manager and follow the install procedure, then to start a node do this:
 
 ```
-${GOPATH}/src/github.com/skycoin/skywire/static/script/manager_start
+${GOPATH}/src/github.com/skycoinproject/skywire/static/script/manager_start
 ```
 
 `tip: the manager start script will also run a local node, you don't need to run in manually on the manager.`
@@ -141,19 +145,19 @@ ${GOPATH}/src/github.com/skycoin/skywire/static/script/manager_start
 Open a command window on a node only computer and follow the install procedure, then to start a node:
 
 ```
-${GOPATH}/src/github.com/skycoin/skywire/static/script/node_start
+${GOPATH}/src/github.com/skycoinproject/skywire/static/script/node_start
 ```
 
-`tip: the node is instructed to connect to the manager IP automatically, if you use a non default IP set you must check the file "/etc/default/skywire" and change the MANAGER_IP variable on each Pc of your setup.`
+`Tip: the node is instructed to connect to a prespecified manager IP automatically, if you use a non default IP set you must check the file "/etc/default/skywire" and change the MANAGER_IP variable on each PC of your setup.`
 
-This two files are the default start script for skywire services, take a peek on them to know more if yu are interested.
+This two files are the default start script for Skywire services, take a peek on them to know more if yu are interested.
 
 #### Stop Skywire Manager and Node.
 
 If you started the manager and the nodes by the ways stated above you can stop them on each Pc by this command on a console:
 
 ```
-${GOPATH}/src/github.com/skycoin/skywire/static/script/stop
+${GOPATH}/src/github.com/skycoinproject/skywire/static/script/stop
 ```
 
 This will check for the pid of the running processes and kill them. If you ran them by hand using a call to a the specific manager or node binaries this will not stop them, in this case you must run this:
@@ -165,14 +169,14 @@ killall manager
 
 ##### Installing the manager and node as a service using systemd
 
-If you use a modern Linux OS (released after 2017) you are using systemd as init manager, skywire has the files needed to make them a service inside systemd.
+If you use a modern Linux OS (released after 2017) you are using systemd as init manager, Skywire has the files needed to make them a service inside systemd.
 
 Please note that the manager instance will start also a local node, so you must select just a manager on a net and the rest will be nodes.
 
-###### Installing & start of mananger unit file on systemd 
+###### Installing & start of manager unit file on systemd 
 
 ```
-cp ${GOPATH}/src/github.com/skycoin/skywire/static/script/upgrade/data/skywire-manager.service /etc/systemd/system/
+cp ${GOPATH}/src/github.com/skycoinproject/skywire/static/script/upgrade/data/skywire-manager.service /etc/systemd/system/
 systemctl enable skywire-manager
 systemctl start skywire-manager
 ```
@@ -180,12 +184,12 @@ systemctl start skywire-manager
 ###### Installing & start of nodes unit file on systemd 
 
 ```
-cp ${GOPATH}/src/github.com/skycoin/skywire/static/script/upgrade/data/skywire-node.service /etc/systemd/system/
+cp ${GOPATH}/src/github.com/skycoinproject/skywire/static/script/upgrade/data/skywire-node.service /etc/systemd/system/
 systemctl enable skywire-node
 systemctl start skywire-node
 ```
 
-From this point forward you can user this services to start/stop your skywire instances via systemd commands:
+From this point forward you can user this services to start/stop your Skywire instances via systemd commands:
 
 ```
 # for the nodes
@@ -254,7 +258,7 @@ docker run -ti --rm \
 ```
 
 **Note:**
-The images of skywire for ARM v5 and v7 are built upon `busybox` whereas the ARM v6 and v8 containers will run on `alpine`.
+The images of Skywire for ARM v5 and v7 are built upon `busybox` whereas the ARM v6 and v8 containers will run on `alpine`.
 
 Open [http://localhost:8000](http://localhost:8000).
 The default login password for Skywire manager is **1234**.
@@ -297,3 +301,21 @@ Note: these images can only be run on [Orange Pi Prime](http://www.orangepi.cn/O
 We developed our own custom flashing tool that prepares & flashes our custom OS [Skybian](https://github.com/skycoin/skybian) for operation on our Skyminers. Skybian is our custom OS built upon armbian. It comes with Skywire and its dependencies preinstalled and its IP configuration is adjusted by [Skyflash](https://github.com/skycoin/skyflash) according to your network environment. Please refer to the [installation guide](https://github.com/skycoin/skywire/wiki/Skyminer-Skywire-installation-guide#installation) on our wiki for more details & instructions.
 
 
+### Official Skyminer Skybian Images
+We are hosting eight (8) prepared Skybian images which are ready to use, i.e. you only need to flash them. They come with the default official Skyminer IP ranges:
+- manager: 192.168.0.2
+- node 1: 192.168.0.3
+- node 2: 192.168.0.4
+- node 3: 192.168.0.5
+- node 4: 192.168.0.6
+- node 5: 192.168.0.7
+- node 6: 192.168.0.8
+- node 7: 192.168.0.9
+
+**SSH Login Details**
+
+The default `root` user password is `skybian`. You are advised to customize it via `passwd` command after the first login.
+
+In case you cannot operate the official Skyminer in its default IP configuration you must use Skyflash to change the IP addresses on the images. 
+
+The images are hosted [here](https://skybian.skycoin.com/).
