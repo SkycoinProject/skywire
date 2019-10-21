@@ -123,7 +123,7 @@
 
 [[projects]]
   digest = "1:508ee0d45d3481a2c9240d9f31ee8134b4327805ff712542e43d95eb3b24c227"
-  name = "github.com/skycoin/skycoin"
+  name = "github.com/SkycoinProject/skycoin"
   packages = [
     "src/cipher",
     "src/cipher/base58",
@@ -142,7 +142,7 @@
 [[projects]]
   branch = "master"
   digest = "1:5dd6bf20d546e6a238dbca3237462e630e6ff59140c399f8d148021bbd43a2e6"
-  name = "github.com/skycoin/skywire"
+  name = "github.com/SkycoinProject/skywire"
   packages = [
     "pkg/app",
     "pkg/manager",
@@ -211,13 +211,13 @@
     "github.com/pkg/errors",
     "github.com/shadowsocks/shadowsocks-go/shadowsocks",
     "github.com/sirupsen/logrus",
-    "github.com/skycoin/skycoin/src/util/file",
-    "github.com/skycoin/skywire/pkg/app",
-    "github.com/skycoin/skywire/pkg/manager",
-    "github.com/skycoin/skywire/pkg/net/skycoin-messenger/factory",
-    "github.com/skycoin/skywire/pkg/net/skycoin-messenger/monitor",
-    "github.com/skycoin/skywire/pkg/node",
-    "github.com/skycoin/skywire/pkg/node/api",
+    "github.com/SkycoinProject/skycoin/src/util/file",
+    "github.com/SkycoinProject/skywire/pkg/app",
+    "github.com/SkycoinProject/skywire/pkg/manager",
+    "github.com/SkycoinProject/skywire/pkg/net/skycoin-messenger/factory",
+    "github.com/SkycoinProject/skywire/pkg/net/skycoin-messenger/monitor",
+    "github.com/SkycoinProject/skywire/pkg/node",
+    "github.com/SkycoinProject/skywire/pkg/node/api",
     "golang.org/x/crypto/bcrypt",
   ]
   solver-name = "gps-cdcl"

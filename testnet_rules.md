@@ -140,7 +140,7 @@ Rewards are being paid on a node by node basis. The total amount of rewards is l
 As of now, you are provided with two tools to check whether or not you're online and generating uptime:
 * The [discovery website](http://testnet.skywire.skycoin.com:8001/)
 * The [Skywire whitelisting system](https://whitelist.skycoin.com)
-   - along with the [Skywire whitelisting system user guide](https://github.com/skycoin/skywire/wiki/Skywire-Whitelisting-System)
+   - along with the [Skywire whitelisting system user guide](https://github.com/SkycoinProject/skywire/wiki/Skywire-Whitelisting-System)
 
 You are advised to use this guide to **verify that your nodes are online & connected to the discovery server**:[Online Status Verification User Guide](https://github.com/skycoinproject/skywire/wiki/Online-Status-Verification-User-Guide)
 
@@ -301,7 +301,7 @@ The following hardware is accepted in the Skywire testnet:
 ## Whitelist
 
 <div align="center">Whitelist applications must be submitted using the <a href="https://whitelist.skycoin.com">Skywire Whitelisting System</a>.<br> 
-All necessary steps to get up and running are described in  <a href="https://github.com/skycoin/skywire/wiki/Skywire-Whitelisting-System">this guide</a></div>
+All necessary steps to get up and running are described in  <a href="https://github.com/SkycoinProject/skywire/wiki/Skywire-Whitelisting-System">this guide</a></div>
 
 
 <div align="center">

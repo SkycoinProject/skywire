@@ -244,7 +244,7 @@ Enter Node Key and App Key. After the connection is successful, the Port (Port) 
 ## Docker
 
 ```
-docker build -t skycoin/skywire .
+docker build -t SkycoinProject/skywire .
 ```
 
 ### Start the manager
@@ -254,7 +254,7 @@ docker run -ti --rm \
   --name=skywire-manager \
   -p 5998:5998 \
   -p 8000:8000 \
-  skycoin/skywire
+  SkycoinProject/skywire
 ```
 
 **Note:**
@@ -273,7 +273,7 @@ docker run -ti --rm \
   --link skywire-manager \
   -p 5000:5000 \
   -p 6001:6001 \
-  skycoin/skywire \
+  SkycoinProject/skywire \
     node \
       -connect-manager \
       -manager-address skywire-manager:5998 \
@@ -298,7 +298,7 @@ Open [http://localhost:8000](http://localhost:8000).
 Note: these images can only be run on [Orange Pi Prime](http://www.orangepi.cn/OrangePiPrime/index_cn.html).
 
 ### Skyflash & Skybian
-We developed our own custom flashing tool that prepares & flashes our custom OS [Skybian](https://github.com/skycoin/skybian) for operation on our Skyminers. Skybian is our custom OS built upon armbian. It comes with Skywire and its dependencies preinstalled and its IP configuration is adjusted by [Skyflash](https://github.com/skycoin/skyflash) according to your network environment. Please refer to the [installation guide](https://github.com/skycoin/skywire/wiki/Skyminer-Skywire-installation-guide#installation) on our wiki for more details & instructions.
+We developed our own custom flashing tool that prepares & flashes our custom OS [Skybian](https://github.com/skycoin/skybian) for operation on our Skyminers. Skybian is our custom OS built upon armbian. It comes with Skywire and its dependencies preinstalled and its IP configuration is adjusted by [Skyflash](https://github.com/skycoin/skyflash) according to your network environment. Please refer to the [installation guide](https://github.com/SkycoinProject/skywire/wiki/Skyminer-Skywire-installation-guide#installation) on our wiki for more details & instructions.
 
 
 ### Official Skyminer Skybian Images
