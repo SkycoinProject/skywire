@@ -14,7 +14,7 @@ import (
 	"time"
 
 	log "github.com/sirupsen/logrus"
-	"github.com/SkycoinProject/skycoin/src/cipher"
+	"github.com/skycoin/skycoin/src/cipher"
 	cn "github.com/SkycoinProject/skywire/pkg/net/conn"
 )
 

@@ -18,7 +18,7 @@ import (
 	"github.com/gorilla/websocket"
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
-	"github.com/SkycoinProject/skycoin/src/cipher"
+	"github.com/skycoin/skycoin/src/cipher"
 	"github.com/SkycoinProject/skywire/pkg/net/skycoin-messenger/factory"
 	"github.com/SkycoinProject/skywire/pkg/node"
 )

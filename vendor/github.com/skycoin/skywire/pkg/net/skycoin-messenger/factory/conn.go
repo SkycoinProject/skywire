@@ -12,7 +12,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/SkycoinProject/skycoin/src/cipher"
+	"github.com/skycoin/skycoin/src/cipher"
 	"github.com/SkycoinProject/skywire/pkg/net/conn"
 	"github.com/SkycoinProject/skywire/pkg/net/factory"
 )

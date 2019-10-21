@@ -10,7 +10,7 @@ import (
 	"github.com/google/btree"
 	"github.com/SkycoinProject/skywire/pkg/net/util"
 
-	"github.com/SkycoinProject/skycoin/src/cipher"
+	"github.com/skycoin/skycoin/src/cipher"
 )
 
 type Interface interface {

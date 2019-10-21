@@ -5,7 +5,7 @@ import (
 	cipher2 "crypto/cipher"
 	"errors"
 	"fmt"
-	"github.com/SkycoinProject/skycoin/src/cipher"
+	"github.com/skycoin/skycoin/src/cipher"
 	"io"
 	"sync"
 	"sync/atomic"

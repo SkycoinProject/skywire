@@ -3,7 +3,7 @@ package cipher
 import (
 	"errors"
 
-	"github.com/SkycoinProject/skycoin/src/cipher/chacha20"
+	"github.com/skycoin/skycoin/src/cipher/chacha20"
 )
 
 // Chacha20Encrypt encrypt the data in chacha20
