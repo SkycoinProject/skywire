@@ -326,12 +326,12 @@ All necessary steps to get up and running are described in  <a href="https://git
 ### Facts
 
 <div align="center"><b>You must use the <a href="https://whitelist.skycoin.com">Skywire Whitelisting System</a> to keep your submitted data up to date</b>
-<br><em> Read<a href="https://github.com/skycoinproject/skywire/wiki/Skywire-Whitelisting-System"> this guide</a> to familiarize yourself with the new system.</em></div>
+<br><em> Read<a href="https://github.com/SkycoinProject/skywire/wiki/Skywire-Whitelisting-System"> this guide</a> to familiarize yourself with the new system.</em></div>
 <br>
 
 * Keep your account data up to date using the [Skywire Whitelisting System](https://whitelist.skycoin.com)
      - Update Skycoin Wallet Address
-     - Update public keys if it's necessary (you're still advised to [backup your public keys](https://github.com/skycoinproject/skywire/wiki/Backup-Public-Keys)
+     - Update public keys if it's necessary (you're still advised to [backup your public keys](https://github.com/SkycoinProject/skywire/wiki/Backup-Public-Keys)
      - Add more boards and include new pictures to receive the verification of an admin
      - Transfer your whitelisted miner to another email address
 * The whitelist is a queue based on a first come first serve basis. Each month we are & have been whitelisting 200 applications, the benchmark for applications is the hardware list above + the official miner specifications.
@@ -342,7 +342,7 @@ All necessary steps to get up and running are described in  <a href="https://git
      - Skycoin wallet reward address.
      - Your 8 public keys. Simply submit less public keys if you have DOA components (reward will be paid regardless until you receive your replacement(s)).
 
-<div align="center"><b>Please note that your account was pre-made for you after purchasing.<br> You received an email with all necessary links & instructions, please check your inbox and follow the steps in the <a href="https://github.com/skycoinproject/skywire/wiki/Skyminer-Official-Guide">Official Skyminer Guide</a>!</b></div>
+<div align="center"><b>Please note that your account was pre-made for you after purchasing.<br> You received an email with all necessary links & instructions, please check your inbox and follow the steps in the <a href="https://github.com/SkycoinProject/skywire/wiki/Skyminer-Official-Guide">Official Skyminer Guide</a>!</b></div>
 
 #### DIY Miner - Required Data for the Whitelisting System
      - Location; doesn't have to be 100% precise.

@@ -47,15 +47,15 @@ Now if you read that you must realize that if you use a different IP set you wil
 ### Unix systems
 
 ```
-mkdir -p $GOPATH/src/github.com/skycoinproject
-cd $GOPATH/src/github.com/skycoinproject
-git clone https://github.com/skycoinproject/skywire.git
+mkdir -p $GOPATH/src/github.com/SkycoinProject
+cd $GOPATH/src/github.com/SkycoinProject
+git clone https://github.com/SkycoinProject/skywire.git
 ```
 
 Build the binaries for Skywire:
 
 ```
-cd $GOPATH/src/github.com/skycoinproject/skywire/cmd
+cd $GOPATH/src/github.com/SkycoinProject/skywire/cmd
 go install ./...
 ```
 
@@ -74,7 +74,7 @@ Just for a matter of precaution, after modify this file be sure that there isn't
 #### Run Skywire Manager
 ```
 cd $GOPATH/bin
-./skywire-manager -web-dir ${GOPATH}/src/github.com/skycoinproject/skywire/static/skywire-manager
+./skywire-manager -web-dir ${GOPATH}/src/github.com/SkycoinProject/skywire/static/skywire-manager
 ```
 
 `tip: If you run with the above command, you will not be able to close the current window or you will close Skywire Manager.`
@@ -82,7 +82,7 @@ cd $GOPATH/bin
 If you need to close the current window and continue to run Skywire Manager, you can use
 ```
 cd $GOPATH/bin
-nohup ./skywire-manager -web-dir ${GOPATH}/src/github.com/skycoinproject/skywire/static/skywire-manager > /dev/null 2>&1 &sleep 3
+nohup ./skywire-manager -web-dir ${GOPATH}/src/github.com/SkycoinProject/skywire/static/skywire-manager > /dev/null 2>&1 &sleep 3
 ```
 
 `Note: do not execute the above two commands at the same time, just select one of them.`
@@ -129,7 +129,7 @@ pkill -F node.pid
 Open a command window on a PC that will act like a manager and follow the install procedure, then to start a node do this:
 
 ```
-${GOPATH}/src/github.com/skycoinproject/skywire/static/script/manager_start
+${GOPATH}/src/github.com/SkycoinProject/skywire/static/script/manager_start
 ```
 
 `tip: the manager start script will also run a local node, you don't need to run in manually on the manager.`
@@ -139,7 +139,7 @@ ${GOPATH}/src/github.com/skycoinproject/skywire/static/script/manager_start
 Open a command window on a node only computer and follow the install procedure, then to start a node:
 
 ```
-${GOPATH}/src/github.com/skycoinproject/skywire/static/script/node_start
+${GOPATH}/src/github.com/SkycoinProject/skywire/static/script/node_start
 ```
 
 `Tip: the node is instructed to connect to a prespecified manager IP automatically, if you use a non default IP set you must check the file "/etc/default/skywire" and change the MANAGER_IP variable on each PC of your setup.`
@@ -151,7 +151,7 @@ This two files are the default start script for Skywire services, take a peek on
 If you started the manager and the nodes by the ways stated above you can stop them on each Pc by this command on a console:
 
 ```
-${GOPATH}/src/github.com/skycoinproject/skywire/static/script/stop
+${GOPATH}/src/github.com/SkycoinProject/skywire/static/script/stop
 ```
 
 This will check for the pid of the running processes and kill them. If you ran them by hand using a call to a the specific manager or node binaries this will not stop them, in this case you must run this:
@@ -170,7 +170,7 @@ Please note that the manager instance will start also a local node, so you must 
 ###### Installing & start of manager unit file on systemd 
 
 ```
-cp ${GOPATH}/src/github.com/skycoinproject/skywire/static/script/upgrade/data/skywire-manager.service /etc/systemd/system/
+cp ${GOPATH}/src/github.com/SkycoinProject/skywire/static/script/upgrade/data/skywire-manager.service /etc/systemd/system/
 systemctl enable skywire-manager
 systemctl start skywire-manager
 ```
@@ -178,7 +178,7 @@ systemctl start skywire-manager
 ###### Installing & start of nodes unit file on systemd 
 
 ```
-cp ${GOPATH}/src/github.com/skycoinproject/skywire/static/script/upgrade/data/skywire-node.service /etc/systemd/system/
+cp ${GOPATH}/src/github.com/SkycoinProject/skywire/static/script/upgrade/data/skywire-node.service /etc/systemd/system/
 systemctl enable skywire-node
 systemctl start skywire-node
 ```
